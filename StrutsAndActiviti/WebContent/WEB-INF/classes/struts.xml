@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- remove these constant elements in production -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+    
+    <package name="main" namespace="" extends="struts-default">
+    
+
+        <action name="Login" class="main.Login">
+            <result name="input">/jsp/Login.jsp</result>
+            <result name="success" type="redirect">Process_view.action</result>
+        </action>
+
+    
+        <action name="Process_view" class="main.Process">
+            <result>/jsp/Process.jsp</result>
+        </action>        
+        
+        <action name="Process_link" class="main.ProcessLink" method="execute">
+            <result>/jsp/Link.jsp</result>
+            <result name="ERROR">/jsp/Error.jsp</result>
+        </action>
+        
+        <action name="Task_details" class="main.TaskDetails" method="execute">
+            <result>/jsp/TaskDetails.jsp</result>
+        </action>
+        
+        <action name="Update_task" class="main.TaskUpdated" method="execute">
+            <result>/jsp/TaskUpdated.jsp</result>
+        </action>
+        
+    </package>
+
+</struts>

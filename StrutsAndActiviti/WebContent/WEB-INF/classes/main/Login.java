@@ -1,0 +1,51 @@
+package main;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class Login extends ActionSupport {
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String userName;
+    private String password;
+ 
+    public String execute() throws Exception {
+
+        boolean errorflag = false;
+
+        if (isInvalid(getUserName()))
+        {
+            errorflag = true;
+        }
+
+        if(errorflag==false)
+        {
+            return INPUT;
+        }
+
+        return SUCCESS;
+    }
+
+    private boolean isInvalid(String value) {
+            return (value != null || value.length() > 0);
+    }
+
+ 
+    public String getUserName() {
+        return userName;
+    }
+     
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+ 
+    public String getPassword() {
+        return password;
+    }
+ 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+}
