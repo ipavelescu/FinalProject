@@ -1,4 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page language="java" contentType="text/html" import="java.util.*"%>
+<jsp:include page="/jsp/LoginDetails.jsp" />
 <html>
 <head>
 <title>Task details</title>

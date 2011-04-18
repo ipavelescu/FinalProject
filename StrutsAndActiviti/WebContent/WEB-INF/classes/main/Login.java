@@ -1,5 +1,8 @@
 package main;
 
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Login extends ActionSupport {
@@ -20,11 +23,16 @@ public class Login extends ActionSupport {
             errorflag = true;
         }
 
+       
+        
         if(errorflag==false)
         {
             return INPUT;
         }
 
+        Map session = ActionContext.getContext().getSession();
+        session.put("user",getUserName());
+        
         return SUCCESS;
     }
 
@@ -48,4 +56,5 @@ public class Login extends ActionSupport {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

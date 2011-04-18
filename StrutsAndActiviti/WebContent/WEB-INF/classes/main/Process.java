@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngineConfiguration;
@@ -11,6 +12,8 @@ import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.runtime.ProcessInstanceQuery;
+
+import com.opensymphony.xwork2.ActionContext;
 
 public class Process implements Serializable {
 	
@@ -74,8 +77,8 @@ public class Process implements Serializable {
     		System.out.println("Value: "+process);
     	}
         
-    	
-    	
+    	Map session = ActionContext.getContext().getSession();
+    	System.out.println("Continutul sesiunii mele: "+session.containsKey("login"));
     	
         return "success";
     }

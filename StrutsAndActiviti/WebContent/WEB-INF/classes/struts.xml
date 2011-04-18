@@ -15,6 +15,10 @@
             <result name="input">/jsp/Login.jsp</result>
             <result name="success" type="redirect">Process_view.action</result>
         </action>
+        
+        <action name="Logout" class="main.Logout" >
+       		<result name="success" type="redirect">Login.action</result>
+		</action>
 
     
         <action name="Process_view" class="main.Process">

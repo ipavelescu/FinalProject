@@ -1,4 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page language="java" contentType="text/html" import="java.util.*"%>
+<jsp:include page="/jsp/LoginDetails.jsp" />
 <html>
 <head>
 <title>See all processes</title>
@@ -19,7 +21,7 @@
 					<s:a href="%{url}"><s:property/></s:a>
 
 				</li>
-<%-- 				<a href="/app02a/Product_link.action?text=kjhkggjuytuytuyg"><s:property/></a></li>  --%>
+
 			</s:iterator>
 		</ul>
 
