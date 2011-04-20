@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page language="java" contentType="text/html" import="java.util.*"%>
+<jsp:include page="/jsp/SignUp.jsp" />
 <html>
 <head>
     <title>Login page</title>

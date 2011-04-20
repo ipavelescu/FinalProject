@@ -77,8 +77,8 @@ public class Process implements Serializable {
     		System.out.println("Value: "+process);
     	}
         
-    	Map session = ActionContext.getContext().getSession();
-    	System.out.println("Continutul sesiunii mele: "+session.containsKey("login"));
+    	//Map session = ActionContext.getContext().getSession();
+    	//System.out.println("Continutul sesiunii mele: "+session.containsKey("login"));
     	
         return "success";
     }

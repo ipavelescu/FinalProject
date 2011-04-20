@@ -10,7 +10,6 @@
     
     <package name="main" namespace="" extends="struts-default">
     
-
         <action name="Login" class="main.Login">
             <result name="input">/jsp/Login.jsp</result>
             <result name="success" type="redirect">Process_view.action</result>
@@ -19,8 +18,7 @@
         <action name="Logout" class="main.Logout" >
        		<result name="success" type="redirect">Login.action</result>
 		</action>
-
-    
+		    
         <action name="Process_view" class="main.Process">
             <result>/jsp/Process.jsp</result>
         </action>        
@@ -39,5 +37,11 @@
         </action>
         
     </package>
-
+    
+     <package name="user" namespace="" extends="struts-default">
+    		<action name="RegisterUser" class="user.Register">
+			<result name="success" type="redirect">/jsp/UserRegister.jsp</result>
+		</action>
+	</package>
+	
 </struts>
