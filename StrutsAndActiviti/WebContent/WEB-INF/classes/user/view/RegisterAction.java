@@ -105,7 +105,7 @@ public class RegisterAction extends ActionSupport {
 		Register Rgst = new Register();
 		
 		Rgst.setAddress(address);
-		Rgst.setCellNo(mobile);
+		Rgst.setMobile(mobile);
 		Rgst.setEmail(eMail);
 		Rgst.setFacebookUserName(facebookUserName);
 		Rgst.setFirstName(firstName);

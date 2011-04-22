@@ -1,16 +1,9 @@
 package user.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
-import javax.persistence.Column;
-
-import javax.persistence.Entity;
-
-import javax.persistence.GeneratedValue;
-
-import javax.persistence.Id;
-
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 
@@ -29,6 +22,8 @@ public class Register implements Serializable {
 	private String userName;
 	
 	private String password;
+	
+	private ArrayList<Integer> groupIds;
 	
 	private String mobile;
 	
@@ -62,9 +57,9 @@ public class Register implements Serializable {
 	
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
-	}	
-	@Column(name = "lastName")
+	}
 	
+	@Column(name = "lastName")
 	public String getLastName() {
 		return lastName;
 	}
@@ -104,8 +99,8 @@ public class Register implements Serializable {
 	public String getMobile() {
 		return mobile;	
 	}
-	
-	public void setCellNo(String mobile) {
+
+	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
 	
@@ -127,13 +122,32 @@ public class Register implements Serializable {
 		this.facebookUserName = facebookUserName;
 	}
 
-	@Column(name = "linkedInUserName")
+	@Column (name = "linkedInUserName")
 	public String getLinkedInUserName() {
 		return linkedInUserName;
 	}
 
 	public void setLinkedInUserName(String linkedInUserName) {
 		this.linkedInUserName = linkedInUserName;
+	}
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "UserXGroup", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = { @JoinColumn(name = "id") })
+	public ArrayList<Integer> getGroupIds() {
+		return groupIds;
+	}
+
+	public void setGroupIds(ArrayList<Integer> groupIds) {
+		this.groupIds = groupIds;
+	}
+
+	@Column(name = "eMail")
+	public String geteMail() {
+		return eMail;
+	}
+
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
 	}
 
 	@Column(name = "imdbUserName")

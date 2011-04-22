@@ -17,7 +17,7 @@
 
 <s:actionerror />
 
-<s:form action="register" method="post">
+<s:form action="Register_user" method="post">
 
 <s:textfield name="firstName" label="First Name" />
 
@@ -27,7 +27,7 @@
 
 <s:password name="password" label="Password" />
 
-<s:select list="groupsId" multiple="true" label="Group(s)" list="{xx,yy,zz}" size="5"/>
+<%-- <s:select name="groupIds" multiple="true" label="Group(s)" value="selectedMonth" required="true" list="#{'01':'Jan', '02':'Feb'}" size="5"/> --%>
 
 <s:textfield name="mobile" label="Mobile" />
 

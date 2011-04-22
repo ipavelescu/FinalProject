@@ -4,7 +4,7 @@
    
     <body>
       	<div align="right">
-		<a href="<%= request.getContextPath() %>/user/Register.action">SignUp</a>
+		<a href="<%= request.getContextPath() %>/user/Register_user.action">SignUp</a>
 		</div>
     </body>
 </html>

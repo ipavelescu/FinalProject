@@ -14,12 +14,10 @@ public class RegisterDao {
         Transaction t = null;
 
          try {
-
                 Session s = sf.openSession();
                 t = s.beginTransaction(); // start a new transaction
                 s.persist(Rgst);
                 t.commit(); // commit transaction
-
                 return true;
 
          } catch (Exception ex) {
