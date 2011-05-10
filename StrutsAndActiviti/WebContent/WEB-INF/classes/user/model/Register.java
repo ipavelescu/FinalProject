@@ -23,11 +23,11 @@ public class Register implements Serializable {
 	
 	private String password;
 	
-	private ArrayList<Integer> groupIds;
+	//private ArrayList<Integer> groupIds;
 	
 	private String mobile;
 	
-	private String eMail;
+	private String email;
 	
 	private String address;
 	
@@ -65,7 +65,7 @@ public class Register implements Serializable {
 	}
 	
 	public void setLastName(String lastName) {
-		this.firstName = lastName;
+		this.lastName = lastName;
 	}
 	
 	@Column(name = "userName")	
@@ -79,11 +79,11 @@ public class Register implements Serializable {
 	
 	@Column(name = "eMail")	
 	public String getEmail() {
-		return eMail;
+		return email;
 	}
 	
 	public void setEmail(String eMail) {
-		this.eMail = eMail;
+		this.email = eMail;
 	}
 	
 	@Column(name = "password")
@@ -131,24 +131,15 @@ public class Register implements Serializable {
 		this.linkedInUserName = linkedInUserName;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "UserXGroup", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = { @JoinColumn(name = "id") })
-	public ArrayList<Integer> getGroupIds() {
-		return groupIds;
-	}
-
-	public void setGroupIds(ArrayList<Integer> groupIds) {
-		this.groupIds = groupIds;
-	}
-
-	@Column(name = "eMail")
-	public String geteMail() {
-		return eMail;
-	}
-
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
-	}
+//	@ManyToMany(cascade = CascadeType.ALL)
+//	@JoinTable(name = "UserXGroup", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns = { @JoinColumn(name = "id") })
+//	public ArrayList<Integer> getGroupIds() {
+//		return groupIds;
+//	}
+//
+//	public void setGroupIds(ArrayList<Integer> groupIds) {
+//		this.groupIds = groupIds;
+//	}
 
 	@Column(name = "imdbUserName")
 	public String getImdbUserName() {

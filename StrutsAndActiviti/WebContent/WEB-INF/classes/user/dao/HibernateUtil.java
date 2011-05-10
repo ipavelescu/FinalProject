@@ -2,6 +2,9 @@ package user.dao;
 
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class HibernateUtil {
 
@@ -23,5 +26,5 @@ public class HibernateUtil {
 		return sessionFactory;
 	}
 
-	} 
+} 
 	

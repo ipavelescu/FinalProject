@@ -12,7 +12,7 @@ public class RegisterAction extends ActionSupport {
 	private static final long serialVersionUID = 908606616890722294L;
 	
 	private Long id;
-	private String firstName, lastName, userName, password, mobile, eMail, address, facebookUserName, linkedInUserName, imdbUserName;
+	private String firstName, lastName, userName, password, mobile, email, address, facebookUserName, linkedInUserName, imdbUserName;
 	
 	
 	public String getFirstName() {
@@ -39,6 +39,14 @@ public class RegisterAction extends ActionSupport {
 		this.userName = userName;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String getMobile() {
 		return mobile;
 	}
@@ -47,12 +55,12 @@ public class RegisterAction extends ActionSupport {
 		this.mobile = mobile;
 	}
 
-	public String geteMail() {
-		return eMail;
+	public String getEmail() {
+		return email;
 	}
 
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getAddress() {
@@ -104,9 +112,11 @@ public class RegisterAction extends ActionSupport {
 	
 		Register Rgst = new Register();
 		
+		System.out.println("Eu cred ca first name este: "+firstName+", iar last name este: "+lastName+" si pe eMail am: "+email+", iar parola este: "+password+". Stop.");
+		
 		Rgst.setAddress(address);
 		Rgst.setMobile(mobile);
-		Rgst.setEmail(eMail);
+		Rgst.setEmail(email);
 		Rgst.setFacebookUserName(facebookUserName);
 		Rgst.setFirstName(firstName);
 		Rgst.setImdbUserName(imdbUserName);
@@ -115,7 +125,7 @@ public class RegisterAction extends ActionSupport {
 		Rgst.setLinkedInUserName(linkedInUserName);
 		Rgst.setPassword(password);
 		Rgst.setUserName(userName);
-		
+
 		
 		if (RegisterDao.registerUser(Rgst))
 		

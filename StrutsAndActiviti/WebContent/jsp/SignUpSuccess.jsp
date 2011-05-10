@@ -22,9 +22,9 @@ pageEncoding="UTF-8"%>
 
 <h1>Registration Successful</h1><hr>
 
-Welcome<s:property value="name" /><br>
+Welcome<s:property value="firstName" /> !<br>
 
-User name :<s:property value="eMail" /><br>
+User name :<s:property value="username" /><br>
 
 Password : <s:property value="password" />
 

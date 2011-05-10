@@ -1,6 +1,10 @@
 package main;
 
+import java.util.List;
 import java.util.Map;
+
+import user.dao.UserManager;
+import user.model.Register;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -17,16 +21,19 @@ public class Login extends ActionSupport {
     public String execute() throws Exception {
 
         boolean errorflag = false;
-
-        if (isInvalid(getUserName()))
+        System.out.println("asta returnez: "+passwordIsValid(getUserName(),getPassword()));
+        System.out.println("valid: "+userNameIsValid(getUserName()));
+        
+        if (!userNameIsValid(getUserName()) || !passwordIsValid(getUserName(),getPassword()))
         {
             errorflag = true;
         }
 
        
         
-        if(errorflag==false)
+        if(errorflag==true)
         {
+        	//System.out.println("error true")
             return INPUT;
         }
 
@@ -36,8 +43,21 @@ public class Login extends ActionSupport {
         return SUCCESS;
     }
 
-    private boolean isInvalid(String value) {
-            return (value != null || value.length() > 0);
+    private boolean passwordIsValid(String username, String password){
+    	
+    	List<Register> resultList = (UserManager.listUser(username));
+    	System.out.println("Lista e "+resultList);
+
+    	if(resultList!=null && resultList.get(0).getPassword().equals(password)){
+	    		return true;
+	    }
+    	
+    	System.out.println("Authentication failed");
+    	return false;
+    }
+    
+    private boolean userNameIsValid(String value) {
+            return (value.length() > 0);
     }
 
  

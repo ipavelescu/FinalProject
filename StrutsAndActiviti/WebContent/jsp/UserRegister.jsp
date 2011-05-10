@@ -31,7 +31,7 @@
 
 <s:textfield name="mobile" label="Mobile" />
 
-<s:textfield name="eMail" label="EMail" />
+<s:textfield name="email" label="EMail" />
 
 <s:textarea name="address" label="Address" />
 
