@@ -54,6 +54,7 @@ org.hibernate.cache.NoCacheProvider
 <property name="hbm2ddl.auto">update</property>
 
 <mapping class="user.model.Register" />
+<mapping class="user.model.Group" />
 
 </session-factory>
 

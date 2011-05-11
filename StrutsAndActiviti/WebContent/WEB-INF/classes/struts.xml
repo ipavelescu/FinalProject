@@ -43,6 +43,11 @@
  				<result name="success">/jsp/SignUpSuccess.jsp</result>
  				<result name="fail">/jsp/Login.jsp</result>
 			</action>
+			
+			<action name="Group_create" class="user.view.CreateGroupAction">
+	    		<result name="input">/jsp/CreateGroup.jsp</result>
+<!-- 	    		<result name="success">/jsp/UserRegister.jsp</result> -->
+			</action>
 	
 	</package>
 	

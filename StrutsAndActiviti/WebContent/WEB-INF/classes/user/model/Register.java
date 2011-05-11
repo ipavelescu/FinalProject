@@ -2,6 +2,8 @@ package user.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -13,7 +15,7 @@ public class Register implements Serializable {
 
 	private static final long serialVersionUID = -6430275524165380638L;
 	
-	private Long id;	
+	private Long userId;	
 	
 	private String firstName;
 	
@@ -23,7 +25,7 @@ public class Register implements Serializable {
 	
 	private String password;
 	
-	//private ArrayList<Integer> groupIds;
+	private Set<Group> groups;
 	
 	private String mobile;
 	
@@ -40,14 +42,14 @@ public class Register implements Serializable {
 	
 	@Id	
 	@GeneratedValue	
-	@Column(name = "id")	
-	public Long getId() {
-		return id;
+	@Column(name = "userId")	
+	public Long getUserId() {
+		return userId;
 	
 	}
 	
-	public void setId(Long id) {	
-		this.id = id;
+	public void setUserId(Long userId) {	
+		this.userId = userId;
 	}
 	
 	@Column(name = "firstName")	
@@ -131,15 +133,15 @@ public class Register implements Serializable {
 		this.linkedInUserName = linkedInUserName;
 	}
 
-//	@ManyToMany(cascade = CascadeType.ALL)
-//	@JoinTable(name = "UserXGroup", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns = { @JoinColumn(name = "id") })
-//	public ArrayList<Integer> getGroupIds() {
-//		return groupIds;
-//	}
-//
-//	public void setGroupIds(ArrayList<Integer> groupIds) {
-//		this.groupIds = groupIds;
-//	}
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "UserXGroup", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns = { @JoinColumn(name = "groupId") })
+	public Set<Group> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(Set<Group> groups) {
+		this.groups = groups;
+	}
 
 	@Column(name = "imdbUserName")
 	public String getImdbUserName() {

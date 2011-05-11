@@ -27,7 +27,12 @@
 
 <s:password name="password" label="Password" />
 
-<%-- <s:select name="groupIds" multiple="true" label="Group(s)" value="selectedMonth" required="true" list="#{'01':'Jan', '02':'Feb'}" size="5"/> --%>
+<s:select name="groups" multiple="true" label="Group(s)" headerValue="Select" required="true" list="%{groups}" size="5"/>
+
+
+<s:url id="url" action="Group_create"> </s:url>			
+<s:a href="%{url}">Create new group</s:a>
+	
 
 <s:textfield name="mobile" label="Mobile" />
 

@@ -1,6 +1,8 @@
 package user.view;
 
 
+import java.util.ArrayList;
+
 import user.dao.RegisterDao;
 
 import user.model.Register;
@@ -11,8 +13,9 @@ public class RegisterAction extends ActionSupport {
 
 	private static final long serialVersionUID = 908606616890722294L;
 	
-	private Long id;
+	private Long userId;
 	private String firstName, lastName, userName, password, mobile, email, address, facebookUserName, linkedInUserName, imdbUserName;
+	private ArrayList<String> groups = new ArrayList<String>();
 	
 	
 	public String getFirstName() {
@@ -29,6 +32,14 @@ public class RegisterAction extends ActionSupport {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public ArrayList<String> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(ArrayList<String> groups) {
+		this.groups = groups;
 	}
 
 	public String getUserName() {
@@ -95,12 +106,12 @@ public class RegisterAction extends ActionSupport {
 		this.imdbUserName = imdbUserName;
 	}
 
-	public Long getId() {
-		return id;	
+	public Long getUserId() {
+		return userId;	
 	}
 	
-	public void setId(Long id) {	
-		this.id = id;
+	public void setUserId(Long id) {	
+		this.userId = userId;
 	}
 	
 	
