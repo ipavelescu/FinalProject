@@ -10,14 +10,18 @@ import user.dao.HibernateUtil;
  
 public class UserManager extends HibernateUtil {
  
-    public Register add(Register registeredUser) {
+    public static boolean add(Register registeredUser) {
+    	
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         session.save(registeredUser);
         session.getTransaction().commit();
-        return registeredUser;
+        return true;
+        
     }
+    
     public Register delete(Long id) {
+    	
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         Register registeredUser = (Register) session.load(Register.class, id);
@@ -26,6 +30,7 @@ public class UserManager extends HibernateUtil {
         }
         session.getTransaction().commit();
         return registeredUser;
+        
     }
  
     @SuppressWarnings("unchecked")

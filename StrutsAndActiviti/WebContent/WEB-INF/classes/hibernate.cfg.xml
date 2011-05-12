@@ -55,7 +55,7 @@ org.hibernate.cache.NoCacheProvider
 
 <mapping class="user.model.Register" />
 <mapping class="user.model.Group" />
-
+<mapping class="user.model.MyGroup" />
 </session-factory>
 
 </hibernate-configuration>

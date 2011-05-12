@@ -45,8 +45,8 @@
 			</action>
 			
 			<action name="Group_create" class="user.view.CreateGroupAction">
-	    		<result name="input">/jsp/CreateGroup.jsp</result>
-<!-- 	    		<result name="success">/jsp/UserRegister.jsp</result> -->
+				<result name="input">/jsp/CreateGroup.jsp</result>
+ 	    		<result name="success">/jsp/SignUpSuccess.jsp</result> 
 			</action>
 	
 	</package>

@@ -3,9 +3,12 @@ package user.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
+
+import user.dao.GroupManager;
 
 @Entity
 
@@ -25,7 +28,7 @@ public class Register implements Serializable {
 	
 	private String password;
 	
-	private Set<Group> groups;
+	private Set<MyGroup> groups;
 	
 	private String mobile;
 	
@@ -135,13 +138,15 @@ public class Register implements Serializable {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "UserXGroup", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns = { @JoinColumn(name = "groupId") })
-	public Set<Group> getGroups() {
+	public Set<MyGroup> getGroups() {
 		return groups;
 	}
 
-	public void setGroups(Set<Group> groups) {
+	public void setGroups(Set<MyGroup> groups) {
 		this.groups = groups;
 	}
+	
+
 
 	@Column(name = "imdbUserName")
 	public String getImdbUserName() {

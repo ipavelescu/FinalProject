@@ -9,6 +9,7 @@ import user.dao.GroupManager;
 
 
 import user.model.Group;
+import user.model.MyGroup;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -20,24 +21,22 @@ public class CreateGroupAction extends ActionSupport {
 	private String groupName, description;
 	
 	
-	public long getGroupId() {
-		return this.groupId;
+	public Long getGroupId() {
+		return groupId;
 	}
 
-	public void setGroupId(long groupId) {
+	public void setGroupId(Long groupId) {
 		this.groupId = groupId;
 	}
 
-	@Column(name="groupName", nullable=false)
 	public String getGroupName() {
-		return this.groupName;
+		return groupName;
 	}
 
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
 
-	@Column(name="description")
 	public String getDescription() {
 		return description;
 	}
@@ -53,18 +52,25 @@ public class CreateGroupAction extends ActionSupport {
 	
 	public String execute() throws Exception {
 	
-		Group Gst = new Group();
+		MyGroup Gst = new MyGroup();
+		
 		
 		Gst.setGroupName(groupName);
 		Gst.setDescription(description);
 	
-		if (GroupManager.addGroup(Gst))
+		System.out.println("descriere: "+Gst.getGroupName());
+		System.out.println("descriere: "+Gst.getDescription());
 		
+//		return "success";
+		if (GroupManager.addGroup(Gst)){
+			
+			System.out.println("success");
 			return "success";
 		
-		else
-		
+		} else {
+			System.out.println("fail");
 			return "fail";
+		}
 	
 	}
 

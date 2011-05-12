@@ -1,24 +1,72 @@
 package user.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
  
 import org.hibernate.HibernateException;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
  
 import user.model.Group;
+import user.model.MyGroup;
+import user.model.Register;
 import user.dao.HibernateUtil;
  
 public class GroupManager extends HibernateUtil {
  
-    public static boolean addGroup(Group registeredGroup) {
-    	
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        session.save(registeredGroup);
-        session.getTransaction().commit();
-        return true;
+	public static boolean addGroup(MyGroup Rgst) {
+
+        SessionFactory sf = HibernateUtil.getSessionFactory();
+        Transaction t = null;
         
-    }
+        Session s = sf.openSession();
+         try {
+               
+                t = s.beginTransaction(); // start a new transaction
+  
+                s.persist(Rgst);
+                t.commit(); // commit transaction
+                return true;
+
+         } catch (Exception ex) {
+        	 System.err.println("Error -->" + ex.getMessage());
+        	 if (t != null)
+                    t.rollback();
+                   return false;
+
+         }
+         
+         finally {
+             s.close();
+         }
+
+	}
+	
+//    public static boolean addGroup(Group registeredGroup) {
+//    	
+//    	
+//    	
+//        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//        
+//        try {
+//        	
+//	        session.beginTransaction();
+//	        session.save(registeredGroup);
+//	        session.getTransaction().commit();
+//	        return true;
+//	        
+//        } catch (Exception ex) {
+//        	
+//	       	 System.err.println("Error -->" + ex.getStackTrace());
+//	    	 if (session.getTransaction() != null)
+//	    		 session.getTransaction().rollback();
+//	               return false;
+//
+//        }
+//        
+//    }
     
     public Group deleteGroup(Long id) {
     	
@@ -33,15 +81,15 @@ public class GroupManager extends HibernateUtil {
     }
  
     @SuppressWarnings("unchecked")
-	public static List<Group> listGroup(String criteria) {
+	public static ArrayList<MyGroup> listGroup() {
  
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        List<Group> registeredGroups = null;
+        ArrayList<MyGroup> registeredGroups = null;
         try {
        // 	Group register = new Group();
         	//register.setGroupName(criteria);
-            registeredGroups = (List<Group>)session.createQuery("from Group").list();
+            registeredGroups = (ArrayList<MyGroup>)session.createQuery("from MyGroup").list();
             		//+"u WHERE u.userName="+criteria
             		
             //System.out.println(registeredGroups);

@@ -2,9 +2,13 @@ package user.view;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import user.dao.RegisterDao;
-
+import user.dao.GroupManager;
+import user.dao.UserManager;
+import user.model.MyGroup;
 import user.model.Register;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -34,7 +38,7 @@ public class RegisterAction extends ActionSupport {
 		this.lastName = lastName;
 	}
 
-	public ArrayList<String> getGroups() {
+	public List<String> getGroups() {
 		return groups;
 	}
 
@@ -114,16 +118,22 @@ public class RegisterAction extends ActionSupport {
 		this.userId = userId;
 	}
 	
-	
-	public RegisterAction() {
-	
+	public RegisterAction(){
+		
+		ArrayList<MyGroup> ggroups = GroupManager.listGroup();
+		for(MyGroup registeredGroup : ggroups){
+			
+			groups.add(registeredGroup.getGroupName());
+		}
 	}
+
 	
 	public String execute() throws Exception {
 	
 		Register Rgst = new Register();
 		
 		System.out.println("Eu cred ca first name este: "+firstName+", iar last name este: "+lastName+" si pe eMail am: "+email+", iar parola este: "+password+". Stop.");
+		System.out.println(groups);
 		
 		Rgst.setAddress(address);
 		Rgst.setMobile(mobile);
@@ -131,14 +141,13 @@ public class RegisterAction extends ActionSupport {
 		Rgst.setFacebookUserName(facebookUserName);
 		Rgst.setFirstName(firstName);
 		Rgst.setImdbUserName(imdbUserName);
-		//Rgst.setId(id);
 		Rgst.setLastName(lastName);
 		Rgst.setLinkedInUserName(linkedInUserName);
 		Rgst.setPassword(password);
 		Rgst.setUserName(userName);
 
-		
-		if (RegisterDao.registerUser(Rgst))
+		//System.out.println("username: "+userName);
+		if (UserManager.add(Rgst))
 		
 			return "success";
 		

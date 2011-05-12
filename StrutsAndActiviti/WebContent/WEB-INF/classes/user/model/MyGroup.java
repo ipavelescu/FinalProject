@@ -10,15 +10,15 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="Group")
-public class Group implements Serializable{
+@Table(name="MyGroup")
+public class MyGroup implements Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long groupId;
-	private String groupName;
+	public String groupName;
 	private String description;
 
 	@Id
