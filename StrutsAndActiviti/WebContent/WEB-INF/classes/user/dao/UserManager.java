@@ -16,6 +16,7 @@ public class UserManager extends HibernateUtil {
         session.beginTransaction();
         session.save(registeredUser);
         session.getTransaction().commit();
+        
         return true;
         
     }

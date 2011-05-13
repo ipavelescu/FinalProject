@@ -19,7 +19,11 @@ public class RegisterAction extends ActionSupport {
 	
 	private Long userId;
 	private String firstName, lastName, userName, password, mobile, email, address, facebookUserName, linkedInUserName, imdbUserName;
-	private ArrayList<String> groups = new ArrayList<String>();
+
+	//lista de grupuri
+	private Set<MyGroup> groups = new HashSet<MyGroup>();
+	//lista de id-uri de grup
+	private ArrayList<Long> groupIds;
 	
 	
 	public String getFirstName() {
@@ -38,12 +42,20 @@ public class RegisterAction extends ActionSupport {
 		this.lastName = lastName;
 	}
 
-	public List<String> getGroups() {
+	public Set<MyGroup> getGroups() {
 		return groups;
 	}
 
-	public void setGroups(ArrayList<String> groups) {
+	public void setGroups(Set<MyGroup> groups) {		
 		this.groups = groups;
+	}
+
+	public ArrayList<Long> getGroupIds() {
+		return groupIds;
+	}
+
+	public void setGroupIds(ArrayList<Long> groupIds) {
+		this.groupIds = groupIds;
 	}
 
 	public String getUserName() {
@@ -119,12 +131,14 @@ public class RegisterAction extends ActionSupport {
 	}
 	
 	public RegisterAction(){
-		
+
 		ArrayList<MyGroup> ggroups = GroupManager.listGroup();
-		for(MyGroup registeredGroup : ggroups){
-			
-			groups.add(registeredGroup.getGroupName());
+		for(MyGroup group : ggroups)
+		{
+			groups.add(group);
 		}
+		System.out.println("grupuri: "+groups);
+		
 	}
 
 	
@@ -132,9 +146,30 @@ public class RegisterAction extends ActionSupport {
 	
 		Register Rgst = new Register();
 		
+
 		System.out.println("Eu cred ca first name este: "+firstName+", iar last name este: "+lastName+" si pe eMail am: "+email+", iar parola este: "+password+". Stop.");
-		System.out.println(groups);
+		System.out.println("selectate: "+groups);
+		Set<MyGroup> selectedGroups = new HashSet<MyGroup>();
+ 
 		
+		for(Long groupId : groupIds)
+		{
+			System.out.println("Id-uri selectate: "+groupId);
+			MyGroup group = GroupManager.findGroupById(groupId);
+			selectedGroups.add(group);
+			
+		}
+//		Set<MyGroup> s = new HashSet<MyGroup>();
+//		MyGroup mg = new MyGroup();
+//		mg.setGroupName("g1");
+//		mg.setDescription("desc g1");
+//		s.add(mg);
+//		mg = new MyGroup();
+//		mg.setGroupName("g2");
+//		mg.setDescription("desc g2");
+//		s.add(mg);
+		
+		Rgst.setGroups(selectedGroups);
 		Rgst.setAddress(address);
 		Rgst.setMobile(mobile);
 		Rgst.setEmail(email);
@@ -145,6 +180,7 @@ public class RegisterAction extends ActionSupport {
 		Rgst.setLinkedInUserName(linkedInUserName);
 		Rgst.setPassword(password);
 		Rgst.setUserName(userName);
+	
 
 		//System.out.println("username: "+userName);
 		if (UserManager.add(Rgst))

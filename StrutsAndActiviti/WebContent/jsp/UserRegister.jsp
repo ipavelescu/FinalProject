@@ -27,8 +27,7 @@
 
 <s:password name="password" label="Password" />
 
-<s:select name="groups" multiple="true" label="Group(s)" headerValue="Select" list="groups" required="true" size="5"/>
-<%--  listKey="groupName" listValue="groupName"/> --%>
+<s:select name="groupIds" multiple="true" label="Group(s)" headerValue="Select" list="groups" size="5" listValue="%{getGroupName()}" listKey="%{getGroupId()}"/>
 
 <s:url id="url" action="Group_create"> </s:url>			
 <s:a href="%{url}">Create new group</s:a>

@@ -89,7 +89,7 @@ public class GroupManager extends HibernateUtil {
         try {
        // 	Group register = new Group();
         	//register.setGroupName(criteria);
-            registeredGroups = (ArrayList<MyGroup>)session.createQuery("from MyGroup").list();
+            registeredGroups = (ArrayList<MyGroup>) session.createQuery("from MyGroup").list();
             		//+"u WHERE u.userName="+criteria
             		
             //System.out.println(registeredGroups);
@@ -103,4 +103,29 @@ public class GroupManager extends HibernateUtil {
         session.getTransaction().commit();
         return registeredGroups;
     }
+    
+    public static MyGroup findGroupById(Long id){
+    	
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        MyGroup group = null;
+        
+        try {
+        	
+        	@SuppressWarnings("unchecked")
+			ArrayList<MyGroup> foundGroups = (ArrayList<MyGroup>) session.createQuery("from MyGroup WHERE groupId="+id).list();
+        	group = foundGroups.get(0);
+        	System.out.println("nume grup: "+group.getGroupName());
+ 
+        } catch (HibernateException e) {
+        	System.out.println("No group match");
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        
+        session.getTransaction().commit();
+    	
+    	return group;
+    }
+    
 }
