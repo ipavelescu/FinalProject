@@ -17,36 +17,40 @@
 
 <s:actionerror />
 
-<s:form action="Register_user" method="post">
+<s:form action="addOrUpdateUser" method="post">
 
-<s:textfield name="firstName" label="First Name" />
+<s:textfield name="user.firstName" label="First Name" />
 
-<s:textfield name="lastName" label="Last Name" />
+<s:textfield name="user.lastName" label="Last Name" />
 
-<s:textfield name="userName" label="User Name" />
+<s:textfield name="user.userName" label="User Name" />
 
-<s:password name="password" label="Password" />
+<s:password name="user.password" label="Password" />
 
-<s:select name="groupIds" multiple="true" label="Group(s)" headerValue="Select" list="groups" size="5" listValue="%{getGroupName()}" listKey="%{getGroupId()}"/>
+<s:select name="groupIds" value="selectedGroupIds" multiple="true" label="Group(s)" headerValue="Select" list="allGroups" size="5" listValue="%{getGroupName()}" listKey="%{getGroupId()}"/>
 
 <s:url id="url" action="Group_create"> </s:url>			
 <s:a href="%{url}">Create new group</s:a>
 	
 
-<s:textfield name="mobile" label="Mobile" />
+<s:textfield name="user.mobile" label="Mobile" />
 
-<s:textfield name="email" label="EMail" />
+<s:textfield name="user.email" label="EMail" />
 
-<s:textarea name="address" label="Address" />
+<s:textarea name="user.address" label="Address" />
 
-<s:textfield name="facebookUserName" label="Facebook account" />
+<s:textfield name="user.facebookUserName" label="Facebook account" />
 
-<s:textfield name="linkedInUserName" label="LinkedIn account" />
+<s:textfield name="user.linkedInUserName" label="LinkedIn account" />
 
-<s:textfield name="imdbUserName" label="IMDB account" />
+<s:textfield name="user.imdbUserName" label="IMDB account" />
 
-<s:submit value="Register" align="center" />
-
+<s:if test="%{user.userId!=null}">
+	<s:submit value="Update" align="center" />
+</s:if>
+<s:else>
+	<s:submit value="Register" align="center" />
+</s:else>
 </s:form>
 
 </body>

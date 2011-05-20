@@ -10,18 +10,35 @@ import user.dao.HibernateUtil;
  
 public class UserManager extends HibernateUtil {
  
-    public static boolean add(Register registeredUser) {
-    	
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//    public static boolean add(Register registeredUser) {
+//    	
+//        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//        session.beginTransaction();
+//        session.save(registeredUser);
+//        session.getTransaction().commit();
+//        
+//        return true;
+//        
+//    }
+	
+	public static boolean addOrUpdateUser(Register user){
+	
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        session.save(registeredUser);
+        
+        try {
+        	session.saveOrUpdate(user);
+        } catch(HibernateException e){
+        	session.getTransaction().rollback();
+        }
+        
         session.getTransaction().commit();
         
         return true;
-        
-    }
+		
+	}
     
-    public Register delete(Long id) {
+    public boolean delete(Long id) {
     	
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
@@ -30,7 +47,7 @@ public class UserManager extends HibernateUtil {
             session.delete(registeredUser);
         }
         session.getTransaction().commit();
-        return registeredUser;
+        return true;
         
     }
  
@@ -56,5 +73,39 @@ public class UserManager extends HibernateUtil {
         System.out.println("de aici"+registeredUsers);
         session.getTransaction().commit();
         return registeredUsers;
+    }
+    
+    @SuppressWarnings("unchecked")
+	public List<Register> listAllUsers() {
+    	 
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        List<Register> users = null;
+        try {
+ 
+            users = (List<Register>)session.createQuery("from Register").list();
+ 
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        session.getTransaction().commit();
+        return users;
+    }
+    
+    public static Register listUserById(Long userId) {
+    	
+    	Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    	session.beginTransaction();
+    	Register user = null;
+    	try {
+    		user = (Register)session.createQuery("from Register WHERE userId= :userId").setParameter("userId",userId).list().get(0);
+    			//(Register) session.get(Register.class, userId);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		session.getTransaction().rollback();
+    	}
+    	session.getTransaction().commit();
+    	return user;
     }
 }

@@ -136,7 +136,7 @@ public class Register implements Serializable {
 		this.linkedInUserName = linkedInUserName;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name = "UserXGroup", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns = { @JoinColumn(name = "groupId") })
 	public Set<MyGroup> getGroups() {
 		return groups;

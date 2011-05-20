@@ -22,7 +22,7 @@ public class RegisterAction extends ActionSupport {
 
 	//lista de grupuri
 	private Set<MyGroup> groups = new HashSet<MyGroup>();
-	//lista de id-uri de grup
+	//lista de id-uri de grup - folosita pentru grupurile selectate
 	private ArrayList<Long> groupIds;
 	
 	
@@ -168,7 +168,9 @@ public class RegisterAction extends ActionSupport {
 //		mg.setGroupName("g2");
 //		mg.setDescription("desc g2");
 //		s.add(mg);
-		
+//		Rgst.setGroups(s);
+//		System.out.println("Groups: " + Rgst.getGroups());
+
 		Rgst.setGroups(selectedGroups);
 		Rgst.setAddress(address);
 		Rgst.setMobile(mobile);
@@ -183,7 +185,7 @@ public class RegisterAction extends ActionSupport {
 	
 
 		//System.out.println("username: "+userName);
-		if (UserManager.add(Rgst))
+		if (UserManager.addOrUpdateUser(Rgst))
 		
 			return "success";
 		

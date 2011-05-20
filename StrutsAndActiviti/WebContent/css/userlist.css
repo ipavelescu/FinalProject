@@ -1,0 +1,42 @@
+table, th, td
+{
+border: 1px solid black;
+}
+table
+{
+border-collapse:collapse;
+}
+table,th, td
+{
+border: 1px solid black;
+}
+th
+{
+height:50px;
+}
+td
+{
+text-align:right;
+}
+table, th, td
+{
+border: 1px solid black;
+}
+td
+{
+height:50px;
+vertical-align:bottom;
+}
+td
+{
+padding:5px;
+}
+table, td, th
+{
+border:1px solid green;
+}
+th
+{
+background-color:green;
+color:white;
+}

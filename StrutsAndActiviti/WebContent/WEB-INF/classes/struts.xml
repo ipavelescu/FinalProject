@@ -9,6 +9,11 @@
     <constant name="struts.devMode" value="true" />
     
     <package name="main" namespace="" extends="struts-default">  
+
+		 <action name="" class="main.Login">
+            <result name="input">/jsp/Login.jsp</result>
+        </action>
+
         <action name="Login" class="main.Login">
             <result name="input">/jsp/Login.jsp</result>
             <result name="success" type="redirect">Process_view.action</result>
@@ -34,6 +39,7 @@
         <action name="Update_task" class="main.TaskUpdated" method="execute">
             <result>/jsp/TaskUpdated.jsp</result>
         </action>     
+        
     </package>
     
      <package name="user" namespace="/user" extends="struts-default">
@@ -48,6 +54,27 @@
 				<result name="input">/jsp/CreateGroup.jsp</result>
  	    		<result name="success">/jsp/SignUpSuccess.jsp</result> 
 			</action>
+
+	</package>
+	
+	<package name="admin" namespace="/admin" extends="struts-default">
+	
+		<action name="addOrUpdateUser" class="admin.view.UserAction" method="addOrUpdateUser">
+            <result name="success">/jsp/UserRegister.jsp</result>
+            <result name="input" type="chain">Register_user</result>
+        </action>
+    	
+    	<action name="editUser" class="admin.view.UserAction" method="edit">
+			<result name="success">/jsp/UserRegister.jsp</result>
+		</action>
+    	
+    	 <action name="deleteUser" class="admin.view.UserAction" method="delete">
+            <result name="success" type="chain">index</result>
+        </action>
+        
+        <action name="index" class="admin.view.UserAction">
+            <result name="success">/jsp/UserManager.jsp</result>
+        </action>
 	
 	</package>
 	

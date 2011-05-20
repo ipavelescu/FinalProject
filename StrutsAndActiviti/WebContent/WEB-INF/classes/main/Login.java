@@ -28,7 +28,6 @@ public class Login extends ActionSupport {
         {
             errorflag = true;
         }
-
        
         
         if(errorflag==true)
@@ -45,9 +44,12 @@ public class Login extends ActionSupport {
 
     private boolean passwordIsValid(String username, String password){
     	
-    	List<Register> resultList = (UserManager.listUser(username));
-    	System.out.println("Lista e "+resultList);
 
+	    	List<Register> resultList = (UserManager.listUser(username));
+	    	System.out.println("Lista e "+resultList);
+
+    	
+    	
     	if(resultList!=null && resultList.get(0).getPassword().equals(password)){
 	    		return true;
 	    }
@@ -57,7 +59,7 @@ public class Login extends ActionSupport {
     }
     
     private boolean userNameIsValid(String value) {
-            return (value.length() > 0);
+        return (value.length() > 0);
     }
 
  
